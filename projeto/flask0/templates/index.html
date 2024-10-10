@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Café</title>
+    <style>
+        *{
+            font-family: 'Times New Roman', Times, serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; 
+            margin: 0;
+            background-color: rgba(245, 245, 220, 0.808);
+        }
+
+        .crud {
+            background-color: #5c40337a;
+            border: 1px solid black;
+            border-radius: 20px; 
+            padding: 50px; 
+            text-align: center;
+            width: 300px; 
+        }
+
+        .ins {
+            background-color: black;
+            color: azure;
+            border: 1px solid black;
+            padding: 10px; 
+            margin-top: 10px; 
+            cursor: pointer;
+            font-size: medium;
+        }
+
+        input[type="text"] {
+            width: 100%; 
+            padding: 10px; 
+            margin-top: 10px; 
+            border: 1px solid;
+            border-radius: 5px;
+        }
+        .te{
+            text-align: center;
+        }
+        .ins:hover{
+            transition-duration: 0.3s;
+            background-color: #5c4033ec;
+            border: 1px solid white;
+            border-radius: 10px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+    <div class="crud">
+        <h1>CRUD Café</h1>
+
+        <!-- Formulário para inserir novo café -->
+        <form action="/criar" method="post">
+            <input type="text" name="nome" placeholder="Digite o nome do café" class="te" required>
+            <input type="submit" value="Inserir" class="ins">
+        </form>
+
+        <!-- Lista de cafés -->
+        <h2>Cafés:</h2>
+        <ul>
+            {% for cafe in cafes %}
+            <li>{{ cafe }}</li>
+            {% endfor %}
+        </ul>   
+
+        <!-- Formulário para atualizar café existente -->
+        <h2>Atualizar café</h2>
+        <form action="/alterar" method="post">
+            <input type="text" name="old_name" placeholder="Nome atual do café" class="te" required>
+            <input type="text" name="new_name" placeholder="Novo nome do café" class="te" required>
+            <input type="submit" value="Alterar" class="ins">
+        </form>
+
+        <!-- Formulário para apagar um café -->
+        <h2>Apagar café:</h2>
+        <form action="/apagar" method="post">
+            <input type="text" name="nome" placeholder="Nome do café" class="te" required>
+            <input type="submit" value="Apagar" class="ins">
+        </form>
+    </div>
+</body>
+</html>
